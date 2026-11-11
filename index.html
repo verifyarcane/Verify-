@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#080b14">
+<title>Wanheda | Trader Portal</title>
+<style>
+:root{--bg:#080b14;--panel:#101522;--panel2:#151c2b;--border:#202b3e;--gold:#e8ad56;--green:#20d5a0;--red:#fa6679;--purple:#a77bff;--blue:#4b9cff;--text:#f4f5fa;--muted:#929bad}
+*{box-sizing:border-box;margin:0;padding:0}body{background:var(--bg);color:var(--text);font-family:Arial,sans-serif;min-height:100vh}button,input,select{font:inherit}button{cursor:pointer}.hidden{display:none!important}
+header{height:78px;padding:0 5%;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--border);background:#090d17;position:sticky;top:0;z-index:5}
+.brand{font-size:19px;font-weight:800;letter-spacing:1px}.brand span{color:var(--gold)}.header-right{display:flex;align-items:center;gap:12px}.status{background:#142d29;color:var(--green);padding:7px 12px;border-radius:20px;font-size:11px}.logout{background:transparent;border:1px solid var(--border);color:white;padding:9px 13px;border-radius:8px}
+.container{width:92%;max-width:1150px;margin:auto}.login-wrap{min-height:calc(100vh - 78px);display:flex;justify-content:center;align-items:center;padding:30px 0}.login-card{width:100%;max-width:470px;padding:35px;background:var(--panel);border:1px solid var(--border);border-radius:22px}
+.eyebrow{color:var(--gold);letter-spacing:3px;font-size:11px;font-weight:bold;margin-bottom:16px}h1{font-size:32px;margin-bottom:12px}.sub{color:var(--muted);line-height:1.6;font-size:14px}
+label{display:block;font-size:13px;font-weight:bold;margin:20px 0 9px}input,select{width:100%;background:#090e18;color:white;padding:14px;border:1px solid var(--border);border-radius:10px;outline:none}input:focus,select:focus{border-color:var(--gold)}input[type=file]{padding:11px}.primary{background:linear-gradient(110deg,#dba34c,#a96d2b);border:0;color:#17100a;width:100%;padding:15px;border-radius:10px;font-weight:800;margin-top:22px}.error{color:var(--red);font-size:13px;margin-top:12px}
+.dashboard{padding:28px 0 70px}.welcome{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:15px;margin:15px 0 25px}.welcome h1{font-size:27px}.small{font-size:12px;color:var(--muted)}.wallet-select{background:var(--panel);border:1px solid var(--border);padding:13px 16px;border-radius:10px;color:white;min-width:200px}
+.notice{background:#181a21;border:1px solid #5b452a;color:#d6b98d;padding:13px 15px;border-radius:10px;font-size:12px;line-height:1.6;margin-bottom:20px}.section-head{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;margin:30px 0 17px}.section-head h2{font-size:20px}.gold{color:var(--gold)}.stats{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:13px}.stat{background:var(--panel);border:1px solid var(--border);border-radius:17px;padding:20px;min-height:125px}.stat-title{color:var(--muted);font-size:11px;letter-spacing:1px}.stat-value{font-size:26px;font-weight:bold;margin-top:12px;overflow-wrap:anywhere}.green{color:var(--green)}.red{color:var(--red)}.stat-note{font-size:11px;color:var(--muted);margin-top:7px}
+.card{background:var(--panel);border:1px solid var(--border);border-radius:17px;padding:20px;margin-top:18px}.filters{display:flex;flex-wrap:wrap;gap:8px;margin-top:15px}.filter{background:#171f2e;border:1px solid var(--border);color:var(--muted);border-radius:20px;padding:9px 14px;font-size:12px}.filter.active{color:var(--gold);border-color:#70522f}
+.market-row{display:flex;justify-content:space-between;align-items:center;gap:15px;padding:15px 5px;border-bottom:1px solid var(--border)}.market-row:last-child{border:0}.market-name{font-weight:bold}.nil{color:var(--muted);font-size:12px}
+.payout-btn{background:linear-gradient(110deg,#dba34c,#a96d2b);color:#17100a;font-weight:bold;border:0;padding:13px 19px;border-radius:10px}.payout-wrap{max-width:680px;margin:40px auto}.payout-card{background:var(--panel);border:1px solid var(--border);border-radius:20px;padding:28px}.success{text-align:center;padding:35px 15px}.success-icon{font-size:48px;margin-bottom:15px}.success h2{font-size:27px;margin-bottom:12px}.success p{color:var(--muted);line-height:1.7}
+.grid-two{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}.field-hint{font-size:11px;color:var(--muted);margin-top:7px;line-height:1.5}.subhead{font-size:14px;color:var(--gold);margin-top:22px;padding-bottom:10px;border-bottom:1px solid var(--border)}
+.import-panel{border:1px dashed #42516a;background:#0c1220;border-radius:14px;padding:20px}.import-top{display:flex;justify-content:space-between;gap:15px;align-items:flex-start;flex-wrap:wrap}.import-mark{width:42px;height:42px;display:grid;place-items:center;background:#1a2b43;border-radius:12px;color:var(--blue);font-size:21px}.import-title{font-weight:bold;margin:2px 0 6px}.import-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:15px}.secondary{background:#172235;color:#e8edf7;border:1px solid #2a3b55;padding:11px 14px;border-radius:9px}.mini-stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-top:18px}.mini-stat{background:#0c1220;border:1px solid var(--border);padding:13px;border-radius:11px}.mini-stat strong{display:block;font-size:19px;margin-top:7px}.mini-stat span{font-size:10px;color:var(--muted);letter-spacing:.7px}
+.chart-wrap{margin-top:18px;background:#0c1220;border:1px solid var(--border);padding:15px;border-radius:13px}.chart-head{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap}.chart{width:100%;height:180px;display:block;margin-top:12px}.chart-labels{display:flex;justify-content:space-between;color:var(--muted);font-size:10px}.table-wrap{overflow-x:auto;margin-top:15px}table{border-collapse:collapse;width:100%;min-width:550px;font-size:12px}th,td{text-align:left;padding:12px 10px;border-bottom:1px solid var(--border)}th{color:var(--muted);font-weight:600}td{color:#e8edf7}.empty-state{text-align:center;padding:22px;color:var(--muted);font-size:13px}
+.coming{text-align:center;padding:65px 20px;background:var(--panel);border:1px solid var(--border);border-radius:18px}.coming h2{font-size:30px;color:var(--gold);margin-bottom:10px}
+footer{border-top:1px solid var(--border);text-align:center;padding:30px 15px;color:var(--muted);font-size:11px;line-height:1.8}
+@media(min-width:700px){.stats{grid-template-columns:repeat(3,minmax(0,1fr))}}@media(max-width:600px){.grid-two{grid-template-columns:1fr}.mini-stats{grid-template-columns:1fr 1fr}.login-card{padding:25px}h1{font-size:27px}.stat-value{font-size:22px}header{padding:0 4%}.payout-card{padding:21px}}
+</style>
+</head>
+<body>
+<header>
+  <div class="brand">WANHEDA <span>PORTAL</span></div>
+  <div class="header-right"><span class="status" id="headerStatus">MEMBERS ONLY</span><button class="logout hidden" id="logoutBtn" onclick="logout()">Exit</button></div>
+</header>
+
+<section id="loginScreen" class="login-wrap"><div class="login-card">
+  <div class="eyebrow">PRIVATE MEMBER ACCESS</div><h1>Welcome back.</h1>
+  <p class="sub">Access the Wanheda community trading portal. Enter your registration details to continue.</p>
+  <form id="loginForm">
+    <label>Full name</label><input id="loginName" placeholder="Enter your full name" required>
+    <label>Email address</label><input id="loginEmail" type="email" placeholder="Email address" required>
+    <label>Invitation code</label><input id="inviteCode" type="password" placeholder="Invitation code" required>
+    <button class="primary">ACCESS PORTAL →</button><p id="loginError" class="error"></p>
+  </form><p class="small" style="margin-top:25px">Restricted access · Wanheda community</p>
+</div></section>
+
+<section id="walletScreen" class="login-wrap hidden"><div class="login-card">
+  <div class="eyebrow">MEMBER VERIFICATION</div><h1>Select your event.</h1><p class="sub">Choose the community account you are registered with.</p>
+  <label>Event wallet</label><select id="walletChoice"><option value="2026">Wanheda 2026</option><option value="2027">Wanheda 2027</option></select>
+  <label>Member ID</label><input id="memberCode" placeholder="Enter your member ID">
+  <button class="primary" onclick="verifyMember()">CONTINUE →</button><p id="memberError" class="error"></p>
+</div></section>
+
+<main id="dashboardScreen" class="hidden"><div class="container dashboard">
+  <div class="welcome"><div><div class="eyebrow">MEMBER DASHBOARD</div><h1>Welcome, <span id="displayName" class="gold"></span></h1><p class="small" id="walletLabel">Wanheda 2026</p></div>
+    <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap"><select class="wallet-select" id="switchWallet" onchange="switchEvent()"><option value="2026">Wanheda 2026</option><option value="2027">Wanheda 2027</option></select><button class="payout-btn" onclick="openPayout()">REQUEST PAYOUT</button></div>
+  </div>
+  <div class="notice" id="dashboardNotice">Demonstration portal. Figures and activity shown here are illustrative and are not live broker data or proof of funds.</div>
+
+  <section id="event2026">
+    <div class="section-head"><h2>Account Overview</h2><span class="small">WANHEDA 2026</span></div>
+    <div class="stats">
+      <div class="stat"><div class="stat-title">BALANCE</div><div class="stat-value gold" id="balanceDisplay">$2,949,732.92</div><div class="stat-note">Displayed account balance</div></div>
+      <div class="stat"><div class="stat-title">WIN RATE</div><div class="stat-value green">75%</div><div class="stat-note"></div></div>
+      <div class="stat"><div class="stat-title">TOTAL TRADES</div><div class="stat-value">1257</div><div class="stat-note"></div></div>
+      <div class="stat"><div class="stat-title">TOTAL P&amp;L</div><div class="stat-value green">$2,949,732.92</div><div class="stat-note">Displayed reference figure</div></div>
+      <div class="stat"><div class="stat-title">BEST TRADE</div><div class="stat-value green">$609,000</div><div class="stat-note"></div></div>
+      <div class="stat"><div class="stat-title">WORST TRADE</div><div class="stat-value red">-$327,000</div><div class="stat-note"></div></div>
+    </div>
+
+    <div class="section-head"><h2>Trade History</h2><span class="small">BROKER HISTORY IMPORT</span></div>
+    <div class="card">
+      <div class="import-panel">
+        <div class="import-top"><div style="display:flex;gap:13px"><div class="import-mark">⇧</div><div><div class="import-title">Import from broker history</div><p class="small">Choose a broker statement file to preview its transactions and activity. CSV files are supported in this demo.</p></div></div><span class="status">MANUAL IMPORT</span></div>
+        <label for="brokerFile">Broker history file (.csv)</label><input id="brokerFile" type="file" accept=".csv,text/csv">
+        <div class="field-hint">Expected columns may include: Date/Time, Symbol, Type, Volume, Price, Profit, Commission and Swap. Column names are detected where possible.</div>
+        <div class="import-actions"><button class="secondary" type="button" onclick="importBrokerHistory()">IMPORT HISTORY</button><button class="secondary" type="button" onclick="clearBrokerHistory()">CLEAR IMPORT</button></div>
+        <p id="importMessage" class="field-hint" aria-live="polite">No broker statement imported yet.</p>
+      </div>
+      <div id="brokerReport" class="hidden">
+        <div class="mini-stats"><div class="mini-stat"><span>IMPORTED DEALS</span><strong id="importDeals">0</strong></div><div class="mini-stat"><span>SYMBOLS FOUND</span><strong id="importSymbols">0</strong></div><div class="mini-stat"><span>NET IMPORTED P&amp;L</span><strong id="importPnl">$0.00</strong></div></div>
+        <div class="chart-wrap"><div class="chart-head"><strong>Imported P&amp;L progression</strong><span class="small">FROM SELECTED FILE</span></div><svg id="pnlChart" class="chart" viewBox="0 0 700 180" preserveAspectRatio="none" role="img" aria-label="Imported broker history cumulative profit and loss chart"><line x1="0" y1="90" x2="700" y2="90" stroke="#354258" stroke-width="1"/><polyline id="pnlLine" fill="none" stroke="#4b9cff" stroke-width="3" points="0,90 700,90"/></svg><div class="chart-labels"><span>First imported deal</span><span>Latest imported deal</span></div></div>
+        <div class="section-head"><h2>Transaction details</h2><span class="small" id="importDateLabel"></span></div>
+        <div class="table-wrap"><table><thead><tr><th>DATE / TIME</th><th>SYMBOL</th><th>TYPE</th><th>VOLUME</th><th>PRICE</th><th>PROFIT</th></tr></thead><tbody id="brokerRows"></tbody></table></div>
+      </div>
+      <div id="brokerEmpty" class="empty-state">Your imported broker transactions will appear here.</div>
+    </div>
+    <div class="card"><div class="section-head" style="margin-top:0"><h2>Account Activity</h2><span class="small">IMPORT STATUS</span></div><p class="small" id="activityStatus">Broker history: Awaiting manual import<br>Account statement: Not yet imported<br>Data source: User-selected broker history file</p></div>
+  </section>
+
+  <section id="event2027" class="hidden">
+    <div class="section-head"><h2>Account Overview</h2><span class="small">WANHEDA 2027</span></div>
+    <div class="stats">
+      <div class="stat"><div class="stat-title">ACCOUNT FIGURE</div><div class="stat-value gold">$30,000</div><div class="stat-note">verified reference figure</div></div>
+      <div class="stat"><div class="stat-title">TRADING STATUS</div><div class="stat-value gold">COMING SOON</div><div class="stat-note">Event not started</div></div>
+      <div class="stat"><div class="stat-title">BROKER HISTORY</div><div class="stat-value">—</div><div class="stat-note">Not available</div></div>
+    </div>
+    <div class="coming" style="margin-top:25px"><div class="eyebrow">WANHEDA / 2027</div><h2>COMING SOON</h2><p class="sub">The next phase of the Wanheda community trading event is currently being prepared.</p></div>
+  </section>
+</div></main>
+
+<section id="payoutScreen" class="hidden"><div class="container payout-wrap">
+  <div class="payout-card" id="payoutFormCard">
+    <div class="eyebrow">MEMBER SERVICES · WANHEDA <span id="payoutEventLabel">2026</span></div><h1>Request Payout</h1><p class="sub">Enter your withdrawal details for this demonstration request.</p>
+    <form id="payoutForm">
+      <label>Full name</label><input id="payoutName" required>
+      <label>Email address</label><input id="payoutEmail" type="email" required>
+      <label>Member ID</label><input id="payoutMember" required>
+      <label>Participant ID</label><input id="participantId" value="dls500" required>
+      <label>Withdrawal amount (USD)</label><input id="payoutAmount" type="number" min="100" max="150000" step="0.01" placeholder="100 - 150,000" required>
+      <p class="field-hint" id="payoutLimitHint">Wanheda 2026 maximum request: $150,000.</p>
+      <label>Withdrawal method</label><select id="withdrawalMethod" required onchange="renderPayoutFields()"><option value="">Select withdrawal method</option><option value="Solana">Solana</option><option value="Monero">Monero</option><option value="Bank Transfer">Bank Transfer</option></select>
+      <div id="cryptoFields"><label>Wallet address</label><input id="withdrawalAddress" placeholder="Paste your receiving wallet address"></div>
+      <div id="bankFields" class="hidden">
+        <div class="subhead">Bank transfer destination</div>
+        <label>Country</label><select id="bankCountry" onchange="renderBankFields()"><option value="">Select destination country</option><option>United States</option><option>Canada</option><option>Poland</option><option>France</option><option>Germany</option><option>Bahamas</option><option>England</option><option>South Africa</option></select>
+        <div id="bankDynamicFields"></div>
+        <p class="field-hint">Enter details for an account you own or are authorized to use. Requirements can vary by receiving bank.</p>
+      </div>
+      <div class="notice" style="margin-top:20px">Demo only: this form does not transmit bank details, initiate a transfer, or submit a real payout request. Do not enter real financial account information.</div>
+      <button class="primary">CONTINUE TO VAL-E-POINT →</button><p id="payoutError" class="error"></p>
+    </form>
+    <button class="logout" style="width:100%;margin-top:15px" onclick="closePayout()">BACK TO DASHBOARD</button>
+  </div>
+  <div class="payout-card hidden" id="valPointCard">
+    <div class="eyebrow">ADDITIONAL MEMBER CHECK</div><h1>Val-e-point verification</h1><p class="sub">Enter the Val-e-point code to complete this local demonstration flow.</p>
+    <form id="valPointForm"><label>Val-e-point</label><input id="valPointInput" type="password" autocomplete="off" required><button class="primary">VERIFY &amp; CONTINUE →</button><p id="valPointError" class="error"></p></form>
+    <button class="logout" style="width:100%;margin-top:15px" onclick="backToPayoutDetails()">BACK</button>
+  </div>
+  <div class="payout-card hidden" id="successCard"><div class="success">
+    <div class="success-icon">✓</div><div class="eyebrow">DEMO REQUEST COMPLETE</div><h2>Thank you, <span id="successName" class="gold"></span>.</h2>
+    <p>Your demonstration payout request for <strong class="gold" id="successAmount"></strong> has passed the local form checks.</p>
+    <p style="margin-top:15px">Method: <strong id="successMethod"></strong></p><p style="margin-top:18px">No request was sent to a broker, bank, wallet provider or administrator. No payment has been initiated or approved.</p>
+    <button class="primary" onclick="closePayout()">RETURN TO DASHBOARD</button>
+  </div></div>
+</div></section>
+
+<footer><strong>WANHEDA COMMUNITY PORTAL</strong><br>Private member access · Arcane Intelligence<br><br>This demonstration portal does not connect to a live broker, hold funds, verify account balances or process withdrawals. Displayed figures are illustrative; payout requests are not transmitted and do not indicate available funds or payment approval.<br><br>© 2026 Wanheda. All rights reserved.</footer>
+
+<script>
+/* DEMONSTRATION SETTINGS — client-side values are not secure authentication */
+const CONFIG={
+  invitationCode:"mt1-arcane",
+  memberIDs:{"2026":"0011-n13","2027":"00221-n13"},
+  participantID:"dls500",
+  balance2026:2558822.00,
+  balance2027:30000,
+  maxPayout2026:150000,
+  maxPayout2027:30000,
+  minPayout:100,
+  valPointDemoCode:"qq1-arcan-xxutiwibjfo"
+};
+let member={name:"",email:"",event:"2026"};
+let importedDeals=[];
+const $=id=>document.getElementById(id);
+function money(value){return "$"+Number(value).toLocaleString("en-US",{minimumFractionDigits:2,maximumFractionDigits:2});}
+function escapeHTML(value){return String(value??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));}
+$("loginForm").addEventListener("submit",e=>{e.preventDefault();const name=$("loginName").value.trim(),email=$("loginEmail").value.trim(),code=$("inviteCode").value.trim();if(code!==CONFIG.invitationCode){$("loginError").textContent="Invalid invitation code.";return;}member.name=name;member.email=email;$("loginScreen").classList.add("hidden");$("walletScreen").classList.remove("hidden");});
+function verifyMember(){const event=$("walletChoice").value,code=$("memberCode").value.trim();if(code!==CONFIG.memberIDs[event]){$("memberError").textContent="Member ID not recognized. Please check and try again.";return;}member.event=event;$("walletScreen").classList.add("hidden");$("dashboardScreen").classList.remove("hidden");$("logoutBtn").classList.remove("hidden");$("headerStatus").textContent="MEMBER ACCESS";$("displayName").textContent=member.name;updateDashboard();}
+function updateDashboard(){$("switchWallet").value=member.event;$("walletLabel").textContent="WANHEDA "+member.event;if(member.event==="2026"){$("event2026").classList.remove("hidden");$("event2027").classList.add("hidden");$("balanceDisplay").textContent=money(CONFIG.balance2026);}else{$("event2026").classList.add("hidden");$("event2027").classList.remove("hidden");}}
+function switchEvent(){const event=$("switchWallet").value,id=prompt("Enter your member ID to access this event:");if(id!==CONFIG.memberIDs[event]){alert("Member ID verification failed.");$("switchWallet").value=member.event;return;}member.event=event;updateDashboard();}
+function openPayout(){if(member.event!=="2026"&&member.event!=="2027")return;$("dashboardScreen").classList.add("hidden");$("payoutScreen").classList.remove("hidden");$("payoutName").value=member.name;$("payoutEmail").value=member.email;$("payoutMember").value=CONFIG.memberIDs[member.event];$("participantId").value=CONFIG.participantID;$("payoutEventLabel").textContent=member.event;$("payoutAmount").max=member.event==="2026"?CONFIG.maxPayout2026:CONFIG.maxPayout2027;$("payoutAmount").placeholder="100 - "+Number($("payoutAmount").max).toLocaleString("en-US");$("payoutLimitHint").textContent="Wanheda "+member.event+" maximum request: "+money(Number($("payoutAmount").max))+".";$("withdrawalMethod").value="";$("bankCountry").value="";$("withdrawalAddress").value="";$("payoutError").textContent="";$("payoutFormCard").classList.remove("hidden");$("valPointCard").classList.add("hidden");$("successCard").classList.add("hidden");renderPayoutFields();window.scrollTo(0,0);}
+function closePayout(){$("payoutScreen").classList.add("hidden");$("dashboardScreen").classList.remove("hidden");window.scrollTo(0,0);}
+function renderPayoutFields(){const method=$("withdrawalMethod").value,isBank=method==="Bank Transfer";$("bankFields").classList.toggle("hidden",!isBank);$("cryptoFields").classList.toggle("hidden",isBank);$("withdrawalAddress").required=!isBank;if(member.event==="2027"&&isBank){$("withdrawalMethod").value="";$("payoutError").textContent="Bank Transfer is available in this demonstration for Wanheda 2026 only.";renderPayoutFields();return;}if(!isBank){$("bankCountry").value="";$("bankDynamicFields").innerHTML="";}}
+const BANK_FIELDS={
+"United States":[["bankName","Bank name"],["accountHolder","Account holder name"],["accountNumber","Account number"],["routingNumber","Routing number"],["accountType","Account type","select",["Checking","Savings"]]],
+"Canada":[["bankName","Bank name"],["accountHolder","Account holder name"],["accountNumber","Account number"],["institutionNumber","Institution number"],["transitNumber","Transit number"],["swift","SWIFT/BIC (if required)"]],
+"Poland":[["bankName","Bank name"],["accountHolder","Account holder name"],["iban","IBAN"],["swift","SWIFT/BIC"]],
+"France":[["bankName","Bank name"],["accountHolder","Account holder name"],["iban","IBAN"],["swift","BIC / SWIFT"]],
+"Germany":[["bankName","Bank name"],["accountHolder","Account holder name"],["iban","IBAN"],["swift","BIC / SWIFT"]],
+"Bahamas":[["bankName","Bank name"],["accountHolder","Account holder name"],["accountNumber","Account number"],["swift","SWIFT/BIC"],["bankAddress","Bank address"]],
+"England":[["bankName","Bank name"],["accountHolder","Account holder name"],["accountNumber","Account number"],["sortCode","Sort code"]],
+"South Africa":[["bankName","Bank name"],["accountHolder","Account holder name"],["accountNumber","Account number"],["branchCode","Branch code"],["swift","SWIFT/BIC (if required)"]]
+};
+function renderBankFields(){const country=$("bankCountry").value,fields=BANK_FIELDS[country]||[];$("bankDynamicFields").innerHTML=fields.map(f=>{const id="bank_"+f[0],label=escapeHTML(f[1]);if(f[2]==="select")return `<label for="${id}">${label}</label><select id="${id}" required><option value="">Select account type</option>${f[3].map(x=>`<option>${escapeHTML(x)}</option>`).join("")}</select>`;return `<label for="${id}">${label}</label><input id="${id}" ${f[0]==="iban"?"autocapitalize=characters":""} autocomplete="off" required>`;}).join("");}
+function validateBankFields(){const country=$("bankCountry").value;if(!BANK_FIELDS[country])return "Select a supported bank destination country.";for(const f of BANK_FIELDS[country]){const el=$("bank_"+f[0]);if(!el||!el.value.trim())return "Complete the "+f[1]+" field.";if(f[0]==="iban"&&!/^[A-Za-z]{2}[0-9A-Za-z ]{13,32}$/.test(el.value.trim()))return "Enter an IBAN in the expected format.";if(f[0]==="routingNumber"&&!/^\d{9}$/.test(el.value.trim()))return "US routing number must contain 9 digits.";if(f[0]==="sortCode"&&!/^(\d{6}|\d{2}-\d{2}-\d{2})$/.test(el.value.trim()))return "Enter a valid 6-digit UK sort code.";if(f[0]==="branchCode"&&!/^\d{6}$/.test(el.value.trim()))return "South African branch code must contain 6 digits.";}return "";}
+$("payoutForm").addEventListener("submit",e=>{e.preventDefault();const error=$("payoutError");error.textContent="";const amount=Number($("payoutAmount").value),max=member.event==="2026"?CONFIG.maxPayout2026:CONFIG.maxPayout2027,method=$("withdrawalMethod").value;if($("payoutMember").value.trim()!==CONFIG.memberIDs[member.event]){error.textContent="Member ID verification failed.";return;}if($("participantId").value.trim()!==CONFIG.participantID){error.textContent="Participant ID verification failed.";return;}if(!Number.isFinite(amount)||amount<CONFIG.minPayout||amount>max){error.textContent="Amount must be between "+money(CONFIG.minPayout)+" and "+money(max)+".";return;}if(!method){error.textContent="Select a withdrawal method.";return;}if(method==="Bank Transfer"){if(member.event!=="2026"){error.textContent="Bank Transfer is available for Wanheda 2026 only.";return;}const bankError=validateBankFields();if(bankError){error.textContent=bankError;return;}}else if(!$("withdrawalAddress").value.trim()){error.textContent="Enter your receiving wallet address.";return;}$("payoutFormCard").classList.add("hidden");$("valPointCard").classList.remove("hidden");$("valPointInput").value="";$("valPointError").textContent="";});
+$("valPointForm").addEventListener("submit",e=>{e.preventDefault();if($("valPointInput").value!==CONFIG.valPointDemoCode){$("valPointError").textContent="Val-e-point verification failed.";return;}const method=$("withdrawalMethod").value;$("successName").textContent=$("payoutName").value.trim();$("successAmount").textContent=money(Number($("payoutAmount").value));$("successMethod").textContent=method;$("valPointCard").classList.add("hidden");$("successCard").classList.remove("hidden");});
+function backToPayoutDetails(){$("valPointCard").classList.add("hidden");$("payoutFormCard").classList.remove("hidden");}
+function logout(){member={name:"",email:"",event:"2026"};importedDeals=[];$("dashboardScreen").classList.add("hidden");$("payoutScreen").classList.add("hidden");$("walletScreen").classList.add("hidden");$("loginScreen").classList.remove("hidden");$("logoutBtn").classList.add("hidden");$("headerStatus").textContent="MEMBERS ONLY";$("loginForm").reset();$("memberCode").value="";clearBrokerHistory();window.scrollTo(0,0);}
+
+/* CSV broker statement import — updates only the import panel, never balance or P&L cards */
+function parseCSV(text){const lines=text.replace(/^\uFEFF/,"").split(/\r?\n/).filter(x=>x.trim());if(!lines.length)return[];function split(line){const out=[];let cur="",quoted=false;for(let i=0;i<line.length;i++){const c=line[i];if(c==='"'&&line[i+1]==='"'&&quoted){cur+='"';i++;}else if(c==='"')quoted=!quoted;else if(c===","&&!quoted){out.push(cur.trim());cur="";}else cur+=c;}out.push(cur.trim());return out;}const headers=split(lines[0]).map(x=>x.toLowerCase().replace(/[^a-z0-9]/g,""));const find=(...names)=>headers.findIndex(h=>names.includes(h));const idx={date:find("date","datetime","time","opentime","closetime"),symbol:find("symbol","instrument","asset"),type:find("type","dealtype","side","action"),volume:find("volume","lots","size"),price:find("price","openprice","closeprice"),profit:find("profit","pnl","netprofit","result")};return lines.slice(1).map(line=>{const c=split(line);const get=k=>idx[k]>=0?(c[idx[k]]||""):"";const rawProfit=get("profit").replace(/[$,\s]/g,"");return{date:get("date")||"—",symbol:get("symbol")||"—",type:get("type")||"—",volume:get("volume")||"—",price:get("price")||"—",profit:Number(rawProfit)||0};}).filter(x=>x.symbol!=="—"||x.date!=="—");}
+async function importBrokerHistory(){const file=$("brokerFile").files[0],msg=$("importMessage");if(!file){msg.textContent="Choose a CSV broker history file first.";return;}if(!file.name.toLowerCase().endsWith(".csv")){msg.textContent="Please choose a CSV file.";return;}try{const text=await file.text(),deals=parseCSV(text);if(!deals.length){msg.textContent="No transaction rows were detected. Check the CSV header and try again.";return;}importedDeals=deals;renderBrokerReport();msg.textContent="Imported "+deals.length+" transaction rows from "+file.name+"."; $("activityStatus").innerHTML="Broker history: "+deals.length+" rows imported from selected CSV<br>Account statement: Local preview only<br>Data source: "+escapeHTML(file.name);}catch(err){msg.textContent="Could not read this file. Please check the CSV and try again.";}}
+function renderBrokerReport(){const rows=importedDeals,total=rows.reduce((s,x)=>s+x.profit,0),symbols=new Set(rows.map(x=>x.symbol).filter(x=>x!=="—"));$("importDeals").textContent=rows.length.toLocaleString();$("importSymbols").textContent=symbols.size.toLocaleString();$("importPnl").textContent=money(total);$("importPnl").className=total>=0?"green": "red";$("brokerRows").innerHTML=rows.slice(-250).reverse().map(x=>`<tr><td>${escapeHTML(x.date)}</td><td>${escapeHTML(x.symbol)}</td><td>${escapeHTML(x.type)}</td><td>${escapeHTML(x.volume)}</td><td>${escapeHTML(x.price)}</td><td class="${x.profit>=0?"green":"red"}">${money(x.profit)}</td></tr>`).join("");$("importDateLabel").textContent="Showing latest "+Math.min(rows.length,250)+" rows";$("brokerReport").classList.remove("hidden");$("brokerEmpty").classList.add("hidden");const points=[];let running=0;rows.forEach((x,i)=>{running+=x.profit;points.push([i,running]);});const min=Math.min(0,...points.map(p=>p[1])),max=Math.max(0,...points.map(p=>p[1])),range=max-min||1;const poly=points.map((p,i)=>{const x=points.length===1?350:i/(points.length-1)*700;const y=165-((p[1]-min)/range)*145;return x.toFixed(1)+","+y.toFixed(1);}).join(" ");$("pnlLine").setAttribute("points",poly||"0,90 700,90");}
+function clearBrokerHistory(){importedDeals=[];$("brokerFile").value="";$("brokerReport").classList.add("hidden");$("brokerEmpty").classList.remove("hidden");$("importMessage").textContent="No broker statement imported yet.";$("activityStatus").innerHTML="Broker history: Awaiting manual import<br>Account statement: Not yet imported<br>Data source: User-selected broker history file";}
+</script>
+</body>
+</html>
+
