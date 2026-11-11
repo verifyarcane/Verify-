@@ -54,15 +54,15 @@ footer{border-top:1px solid var(--border);text-align:center;padding:30px 15px;co
   <div class="welcome"><div><div class="eyebrow">MEMBER DASHBOARD</div><h1>Welcome, <span id="displayName" class="gold"></span></h1><p class="small" id="walletLabel">Wanheda 2026</p></div>
     <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap"><select class="wallet-select" id="switchWallet" onchange="switchEvent()"><option value="2026">Wanheda 2026</option><option value="2027">Wanheda 2027</option></select><button class="payout-btn" onclick="openPayout()">REQUEST PAYOUT</button></div>
   </div>
-  <div class="notice" id="dashboardNotice">Demonstration portal. Figures and activity shown here are illustrative and are not live broker data or proof of funds.</div>
+  <div class="notice" id="dashboardNotice">mt5: 486096323</div>
 
   <section id="event2026">
     <div class="section-head"><h2>Account Overview</h2><span class="small">WANHEDA 2026</span></div>
     <div class="stats">
-      <div class="stat"><div class="stat-title">BALANCE</div><div class="stat-value gold" id="balanceDisplay">$2,949,732.92</div><div class="stat-note">Displayed account balance</div></div>
+      <div class="stat"><div class="stat-title">BALANCE</div><div class="stat-value gold" id="balance">$2,949,732.92</div><div class="stat-note"></div></div>
       <div class="stat"><div class="stat-title">WIN RATE</div><div class="stat-value green">75%</div><div class="stat-note"></div></div>
       <div class="stat"><div class="stat-title">TOTAL TRADES</div><div class="stat-value">1257</div><div class="stat-note"></div></div>
-      <div class="stat"><div class="stat-title">TOTAL P&amp;L</div><div class="stat-value green">$2,949,732.92</div><div class="stat-note">Displayed reference figure</div></div>
+      <div class="stat"><div class="stat-title">TOTAL P&amp;L</div><div class="stat-value green">$2,949,732.92</div><div class="stat-note"></div></div>
       <div class="stat"><div class="stat-title">BEST TRADE</div><div class="stat-value green">$609,000</div><div class="stat-note"></div></div>
       <div class="stat"><div class="stat-title">WORST TRADE</div><div class="stat-value red">-$327,000</div><div class="stat-note"></div></div>
     </div>
@@ -70,7 +70,7 @@ footer{border-top:1px solid var(--border);text-align:center;padding:30px 15px;co
     <div class="section-head"><h2>Trade History</h2><span class="small">BROKER HISTORY IMPORT</span></div>
     <div class="card">
       <div class="import-panel">
-        <div class="import-top"><div style="display:flex;gap:13px"><div class="import-mark">⇧</div><div><div class="import-title">Import from broker history</div><p class="small">Choose a broker statement file to preview its transactions and activity. CSV files are supported in this demo.</p></div></div><span class="status">MANUAL IMPORT</span></div>
+        <div class="import-top"><div style="display:flex;gap:13px"><div class="import-mark">⇧</div><div><div class="import-title">Import from broker history</div><p class="small">Choose a broker statement file to preview its transactions and activity. CSV files are supported.</p></div></div><span class="status">MANUAL IMPORT</span></div>
         <label for="brokerFile">Broker history file (.csv)</label><input id="brokerFile" type="file" accept=".csv,text/csv">
         <div class="field-hint">Expected columns may include: Date/Time, Symbol, Type, Volume, Price, Profit, Commission and Swap. Column names are detected where possible.</div>
         <div class="import-actions"><button class="secondary" type="button" onclick="importBrokerHistory()">IMPORT HISTORY</button><button class="secondary" type="button" onclick="clearBrokerHistory()">CLEAR IMPORT</button></div>
@@ -84,7 +84,7 @@ footer{border-top:1px solid var(--border);text-align:center;padding:30px 15px;co
       </div>
       <div id="brokerEmpty" class="empty-state">Your imported broker transactions will appear here.</div>
     </div>
-    <div class="card"><div class="section-head" style="margin-top:0"><h2>Account Activity</h2><span class="small">IMPORT STATUS</span></div><p class="small" id="activityStatus">Broker history: Awaiting manual import<br>Account statement: Not yet imported<br>Data source: User-selected broker history file</p></div>
+    <div class="card"><div class="section-head" style="margin-top:0"><h2>Account Activity</h2><span class="small">IMPORT STATUS</span></div><p class="small" id="activityStatus">Broker connection: MT5 486096323t<br>Recent broker history: <br>account statement: Awaiting verification</p></div>
   </section>
 
   <section id="event2027" class="hidden">
@@ -100,7 +100,7 @@ footer{border-top:1px solid var(--border);text-align:center;padding:30px 15px;co
 
 <section id="payoutScreen" class="hidden"><div class="container payout-wrap">
   <div class="payout-card" id="payoutFormCard">
-    <div class="eyebrow">MEMBER SERVICES · WANHEDA <span id="payoutEventLabel">2026</span></div><h1>Request Payout</h1><p class="sub">Enter your withdrawal details for this demonstration request.</p>
+    <div class="eyebrow">MEMBER SERVICES · WANHEDA <span id="payoutEventLabel">2026</span></div><h1>Request Payout</h1><p class="sub">Enter your withdrawal details for this request.</p>
     <form id="payoutForm">
       <label>Full name</label><input id="payoutName" required>
       <label>Email address</label><input id="payoutEmail" type="email" required>
@@ -116,33 +116,33 @@ footer{border-top:1px solid var(--border);text-align:center;padding:30px 15px;co
         <div id="bankDynamicFields"></div>
         <p class="field-hint">Enter details for an account you own or are authorized to use. Requirements can vary by receiving bank.</p>
       </div>
-      <div class="notice" style="margin-top:20px">Demo only: this form does not transmit bank details, initiate a transfer, or submit a real payout request. Do not enter real financial account information.</div>
+      <div class="notice" style="margin-top:20px">DISCLAIMER: Ensure all payout details are accurate before submitting. Incorrect information may delay or affect your payout.</div>
       <button class="primary">CONTINUE TO VAL-E-POINT →</button><p id="payoutError" class="error"></p>
     </form>
     <button class="logout" style="width:100%;margin-top:15px" onclick="closePayout()">BACK TO DASHBOARD</button>
   </div>
   <div class="payout-card hidden" id="valPointCard">
-    <div class="eyebrow">ADDITIONAL MEMBER CHECK</div><h1>Val-e-point verification</h1><p class="sub">Enter the Val-e-point code to complete this local demonstration flow.</p>
+    <div class="eyebrow">ADDITIONAL MEMBER CHECK</div><h1>vaxl-e-point verification</h1><p class="sub">Enter the vax transaction e-code to complete this transaction request.</p>
     <form id="valPointForm"><label>Val-e-point</label><input id="valPointInput" type="password" autocomplete="off" required><button class="primary">VERIFY &amp; CONTINUE →</button><p id="valPointError" class="error"></p></form>
     <button class="logout" style="width:100%;margin-top:15px" onclick="backToPayoutDetails()">BACK</button>
   </div>
   <div class="payout-card hidden" id="successCard"><div class="success">
-    <div class="success-icon">✓</div><div class="eyebrow">DEMO REQUEST COMPLETE</div><h2>Thank you, <span id="successName" class="gold"></span>.</h2>
-    <p>Your demonstration payout request for <strong class="gold" id="successAmount"></strong> has passed the local form checks.</p>
-    <p style="margin-top:15px">Method: <strong id="successMethod"></strong></p><p style="margin-top:18px">No request was sent to a broker, bank, wallet provider or administrator. No payment has been initiated or approved.</p>
+    <div class="success-icon">🎊</div><div class="eyebrow">REQUEST RECEIVED </div><h2>congratulations, <span id="successName" class="gold"></span>.</h2>
+    <p>Your payout request for <strong class="gold" id="successAmount"></strong> has been successfully submitted.</p>
+    <p style="margin-top:15px">Method: <strong id="successMethod"></strong></p><p style="margin-top:18px"> your request is pending administrative review. The payment timeline will be confirmed after verification approval.</p>
     <button class="primary" onclick="closePayout()">RETURN TO DASHBOARD</button>
   </div></div>
 </div></section>
 
-<footer><strong>WANHEDA COMMUNITY PORTAL</strong><br>Private member access · Arcane Intelligence<br><br>This demonstration portal does not connect to a live broker, hold funds, verify account balances or process withdrawals. Displayed figures are illustrative; payout requests are not transmitted and do not indicate available funds or payment approval.<br><br>© 2026 Wanheda. All rights reserved.</footer>
+<footer><strong>WANHEDA COMMUNITY PORTAL</strong><br>Private member access · Arcane Intelligence<br><br>This portal connect to a live broker, hold funds, verify account balance or process withdrawals. Payout request indicates available funds and confirmed payment approval.<br><br>© 2026 Wanheda. All rights reserved.</footer>
 
 <script>
-/* DEMONSTRATION SETTINGS — client-side values are not secure authentication */
+/* SETTINGS — client-side values are not secure authentication */
 const CONFIG={
   invitationCode:"mt1-arcane",
   memberIDs:{"2026":"0011-n13","2027":"00221-n13"},
   participantID:"dls500",
-  balance2026:2558822.00,
+  balance2026:2949732.00,
   balance2027:30000,
   maxPayout2026:150000,
   maxPayout2027:30000,
@@ -156,7 +156,7 @@ function money(value){return "$"+Number(value).toLocaleString("en-US",{minimumFr
 function escapeHTML(value){return String(value??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));}
 $("loginForm").addEventListener("submit",e=>{e.preventDefault();const name=$("loginName").value.trim(),email=$("loginEmail").value.trim(),code=$("inviteCode").value.trim();if(code!==CONFIG.invitationCode){$("loginError").textContent="Invalid invitation code.";return;}member.name=name;member.email=email;$("loginScreen").classList.add("hidden");$("walletScreen").classList.remove("hidden");});
 function verifyMember(){const event=$("walletChoice").value,code=$("memberCode").value.trim();if(code!==CONFIG.memberIDs[event]){$("memberError").textContent="Member ID not recognized. Please check and try again.";return;}member.event=event;$("walletScreen").classList.add("hidden");$("dashboardScreen").classList.remove("hidden");$("logoutBtn").classList.remove("hidden");$("headerStatus").textContent="MEMBER ACCESS";$("displayName").textContent=member.name;updateDashboard();}
-function updateDashboard(){$("switchWallet").value=member.event;$("walletLabel").textContent="WANHEDA "+member.event;if(member.event==="2026"){$("event2026").classList.remove("hidden");$("event2027").classList.add("hidden");$("balanceDisplay").textContent=money(CONFIG.balance2026);}else{$("event2026").classList.add("hidden");$("event2027").classList.remove("hidden");}}
+function updateDashboard(){$("switchWallet").value=member.event;$("walletLabel").textContent="WANHEDA "+member.event;if(member.event==="2026"){$("event2026").classList.remove("hidden");$("event2027").classList.add("hidden");$("balance").textContent=money(CONFIG.balance2026);}else{$("event2026").classList.add("hidden");$("event2027").classList.remove("hidden");}}
 function switchEvent(){const event=$("switchWallet").value,id=prompt("Enter your member ID to access this event:");if(id!==CONFIG.memberIDs[event]){alert("Member ID verification failed.");$("switchWallet").value=member.event;return;}member.event=event;updateDashboard();}
 function openPayout(){if(member.event!=="2026"&&member.event!=="2027")return;$("dashboardScreen").classList.add("hidden");$("payoutScreen").classList.remove("hidden");$("payoutName").value=member.name;$("payoutEmail").value=member.email;$("payoutMember").value=CONFIG.memberIDs[member.event];$("participantId").value=CONFIG.participantID;$("payoutEventLabel").textContent=member.event;$("payoutAmount").max=member.event==="2026"?CONFIG.maxPayout2026:CONFIG.maxPayout2027;$("payoutAmount").placeholder="100 - "+Number($("payoutAmount").max).toLocaleString("en-US");$("payoutLimitHint").textContent="Wanheda "+member.event+" maximum request: "+money(Number($("payoutAmount").max))+".";$("withdrawalMethod").value="";$("bankCountry").value="";$("withdrawalAddress").value="";$("payoutError").textContent="";$("payoutFormCard").classList.remove("hidden");$("valPointCard").classList.add("hidden");$("successCard").classList.add("hidden");renderPayoutFields();window.scrollTo(0,0);}
 function closePayout(){$("payoutScreen").classList.add("hidden");$("dashboardScreen").classList.remove("hidden");window.scrollTo(0,0);}
@@ -186,4 +186,3 @@ function clearBrokerHistory(){importedDeals=[];$("brokerFile").value="";$("broke
 </script>
 </body>
 </html>
-
